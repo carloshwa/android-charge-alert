@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">充电通知</string>
+    <string name="full">充完</string>
+    <string name="enabled">启用</string>
+    <string name="vibrate">震动</string>
+    <string name="sound">声音</string>
+    <string name="feedback">回应</string>
+    <string name="email">pandamoniumsoftware@gmail.com</string>
+    <string name="no_email">No e-mail client installed.</string>
+</resources>
