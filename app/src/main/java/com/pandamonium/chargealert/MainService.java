@@ -68,7 +68,7 @@ public class MainService extends Service {
                         if (!mAlreadyNotified) {
                             mAlreadyNotified = true;
                             SharedPreferences preferences = context.getSharedPreferences(MainActivity.PREFERENCES_NAME, 0);
-                            int defaults = 0;
+                            int defaults = Notification.DEFAULT_LIGHTS;
                             if (preferences.getBoolean(MainActivity.PREFERENCE_KEY_VIBRATE, false)) {
                                 defaults |= Notification.DEFAULT_VIBRATE;
                             }
