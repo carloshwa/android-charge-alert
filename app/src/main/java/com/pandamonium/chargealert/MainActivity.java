@@ -15,12 +15,14 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     public static final String PREFERENCES_NAME = "com.pandamonium.chargealert";
-    public static final String PREFERENCE_KEY_ENABLED = "enabled";
+    public static final String PREFERENCE_KEY_CHARGE_ENABLED = "enabled";
+    public static final String PREFERENCE_KEY_DATA_ENABLED = "data_enabled";
     public static final String PREFERENCE_KEY_VIBRATE = "vibrate";
     public static final String PREFERENCE_KEY_SOUND = "sound";
 
     private SharedPreferences mPreferences;
-    private Switch mEnabledSwitch;
+    private Switch mChargeEnabledSwitch;
+    private Switch mDataEnabledSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +36,15 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         ((TextView) findViewById(R.id.version_text)).setText(BuildConfig.VERSION_NAME);
 
-        boolean isEnabled = mPreferences.getBoolean(PREFERENCE_KEY_ENABLED, false);
-        mEnabledSwitch = (Switch) findViewById(R.id.enabled_switch);
-        mEnabledSwitch.setChecked(isEnabled);
-        mEnabledSwitch.setOnCheckedChangeListener(this);
+        boolean isChargeEnabled = mPreferences.getBoolean(PREFERENCE_KEY_CHARGE_ENABLED, false);
+        mChargeEnabledSwitch = (Switch) findViewById(R.id.charge_enabled_switch);
+        mChargeEnabledSwitch.setChecked(isChargeEnabled);
+        mChargeEnabledSwitch.setOnCheckedChangeListener(this);
+
+        boolean isDataEnabled = mPreferences.getBoolean(PREFERENCE_KEY_DATA_ENABLED, false);
+        mDataEnabledSwitch = (Switch) findViewById(R.id.data_enabled_switch);
+        mDataEnabledSwitch.setChecked(isDataEnabled);
+        mDataEnabledSwitch.setOnCheckedChangeListener(this);
 
         Switch vibrateSwitch = (Switch) findViewById(R.id.vibrate_switch);
         vibrateSwitch.setChecked(mPreferences.getBoolean(PREFERENCE_KEY_VIBRATE, false));
@@ -76,8 +83,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         int id = buttonView.getId();
 
         switch (id) {
-            case R.id.enabled_switch:
-                mPreferences.edit().putBoolean(PREFERENCE_KEY_ENABLED, isChecked).apply();
+            case R.id.charge_enabled_switch:
+                mPreferences.edit().putBoolean(PREFERENCE_KEY_CHARGE_ENABLED, isChecked).apply();
+                MainService.startIfEnabled(this);
+                break;
+            case R.id.data_enabled_switch:
+                mPreferences.edit().putBoolean(PREFERENCE_KEY_DATA_ENABLED, isChecked).apply();
                 MainService.startIfEnabled(this);
                 break;
             case R.id.vibrate_switch:

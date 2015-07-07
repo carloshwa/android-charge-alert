@@ -3,7 +3,9 @@
 
     <string name="app_name">Charge Alert</string>
     <string name="full">Battery Full</string>
-    <string name="enabled">Enabled</string>
+    <string name="data_connected">LTE Connected</string>
+    <string name="charge_enabled">Charge Alert Enabled</string>
+    <string name="data_enabled">Data Alert Enabled</string>
     <string name="vibrate">Vibrate</string>
     <string name="sound">Sound</string>
     <string name="feedback">Feedback</string>

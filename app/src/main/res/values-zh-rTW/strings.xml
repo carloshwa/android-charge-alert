@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">充電通知</string>
     <string name="full">充完</string>
-    <string name="enabled">啟用​</string>
+    <string name="charge_enabled">啟用​</string>
     <string name="vibrate">震動​</string>
     <string name="sound">聲音</string>
     <string name="feedback">回應​</string>
